@@ -1,4 +1,4 @@
-# kubenetes-learning
+# Kubenetes-learning
 It's a repository to track down my kubernetes learning progress.
 
 # Git Markdown syntax
