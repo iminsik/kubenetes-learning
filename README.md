@@ -17,4 +17,6 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 
    Download the 1.5.0 version and move it to c:\windows\kubectl.exe
 
-   
+# Start Single-node Kubernetes with Minikube
+1. Run 'Docker Quick Start Terminal' to create and initialize 'default' docker virtualbox.
+2. Open 'CMD' and run 'minikube start'. It creates 'minikube' virtualbox.
