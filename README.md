@@ -20,3 +20,6 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 # Start Single-node Kubernetes with Minikube
 1. Run 'Docker Quick Start Terminal' to create and initialize 'default' docker virtualbox.
 2. Open 'CMD' and run 'minikube start'. It creates 'minikube' virtualbox.
+
+# TODO 1
+Let's build my own node js and deploy it to Kubernetes
