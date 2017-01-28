@@ -1,7 +1,7 @@
-# Kubenetes-learning
+# Kubenetes-Learning
 It's a repository to track down my kubernetes learning progress.
 
-# Git Markdown syntax
+# Git Markdown Syntax
 I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) in writing this Markdown.
 
 # Resources
