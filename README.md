@@ -61,7 +61,7 @@ spec:
           containerPort: 3000
 ```
 
-```bash
+```sh
 kubectl create -f kubernetes-yaml/deployment/helloworld.yml
 ```
 # TODO 2
