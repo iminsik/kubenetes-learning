@@ -14,7 +14,7 @@ spec:
         image: iminsik/node-web-app 
         ports:
         - name: nodejs-port
-          containerPort: 3000
+          containerPort: 8080 
         livenessProbe:
           httpGet:
             path: /
