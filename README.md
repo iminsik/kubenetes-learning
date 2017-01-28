@@ -24,6 +24,22 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 # TODO 1
 Let's build my own node js and deploy it to Kubernetes
 - A very simple 'hello world' - [iminsik/node-hello-app](https://hub.docker.com/r/iminsik/node-web-app/) was built and pushed to Docker Hub.
+
+```javascript
+// docker/Dockerfile
+'use strict';
+
+const express = require('express'),
+      PORT = 8080,
+      app = express();
+
+app.get('/', function (req, res) {
+	res.send('Hello World\n');
+});
+
+app.listen(PORT);
+```
+
 - The docker image could be deployed to local single-node minikube cluster with 10 replicas set.
 ```yml
 apiVersion: extensions/v1beta1
