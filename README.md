@@ -26,7 +26,7 @@ Let's build my own node js and deploy it to Kubernetes
 - A very simple 'hello world' - [iminsik/node-hello-app](https://hub.docker.com/r/iminsik/node-web-app/) was built and pushed to Docker Hub.
 
 ```javascript
-// docker/Dockerfile
+// docker/server.js
 'use strict';
 
 const express = require('express'),
