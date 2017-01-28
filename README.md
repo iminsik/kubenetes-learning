@@ -21,8 +21,8 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 1. Run 'Docker Quick Start Terminal' to create and initialize 'default' docker virtualbox.
 2. Open 'Powershell' and run 'minikube start'. It creates 'minikube' or 'minikubeVM' instance in VirtualBox.
 
-# TODO 1
-Let's build my own node js and deploy it to Kubernetes
+# TODO
+## TODO 1: Build my own node js and deploy it to Kubernetes
 - A very simple 'hello world' - [iminsik/node-hello-app](https://hub.docker.com/r/iminsik/node-web-app/) was built and pushed to Docker Hub.
 
 ```javascript
@@ -61,7 +61,8 @@ spec:
           containerPort: 3000
 ```
 
-```sh
+```bash
 kubectl create -f kubernetes-yaml/deployment/helloworld.yml
 ```
-# TODO 2
+## TODO 2: launch service for the helloworld app
+
