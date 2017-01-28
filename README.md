@@ -62,6 +62,7 @@ spec:
 kubectl create -f kubernetes-yaml/deployment/helloworld.yml
 ```
 ![helloworld-deployment](https://github.com/iminsik/kubenetes-learning/blob/master/GIF/helloworld-deployment.gif)
+You can see more instructions on [Kubernetes Dashboard](https://kubernetes.io/docs/user-guide/ui/)
 
 ## TODO 2: deploy the helloworld app with health check
 - The docker image could be deployed to local single-node minikube cluster with 10 replicas set.
