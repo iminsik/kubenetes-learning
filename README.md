@@ -23,3 +23,28 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 
 # TODO 1
 Let's build my own node js and deploy it to Kubernetes
+- A very simple 'hello world' - [iminsik/node-hello-app](https://hub.docker.com/r/iminsik/node-web-app/) was built and pushed to Docker Hub.
+- The docker image could be deployed to local single-node minikube cluster with 10 replicas set.
+```yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 10 
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: iminsik 
+        image: iminsik/node-web-app 
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+```
+
+```bash
+kubectl create -f deployment/helloworld.yml
+```
