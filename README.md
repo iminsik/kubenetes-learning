@@ -46,5 +46,5 @@ spec:
 ```
 
 ```bash
-kubectl create -f deployment/helloworld.yml
+kubectl create -f kubernetes-yaml/deployment/helloworld.yml
 ```
