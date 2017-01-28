@@ -80,13 +80,15 @@ spec:
         image: iminsik/node-web-app 
         ports:
         - name: nodejs-port
-          containerPort: 8080 
-        **livenessProbe:
+          containerPort: 8080
+	#BEGIN: Checking App Health
+        livenessProbe:
           httpGet:
             path: /
             port: nodejs-port
           initialDelaySeconds: 10
-          timeoutSeconds: 20**
+          timeoutSeconds: 20
+	#END:
 ```
 
 ```bash
