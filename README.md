@@ -61,5 +61,35 @@ spec:
 ```bash
 kubectl create -f kubernetes-yaml/deployment/helloworld.yml
 ```
-## TODO 2: launch service for the helloworld app
+## TODO 2: deploy the helloworld app with health check
+- The docker image could be deployed to local single-node minikube cluster with 10 replicas set.
+```yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 10 
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: iminsik 
+        image: iminsik/node-web-app 
+        ports:
+        - name: nodejs-port
+          containerPort: 8080 
+        **livenessProbe:
+          httpGet:
+            path: /
+            port: nodejs-port
+          initialDelaySeconds: 10
+          timeoutSeconds: 20**
+```
+
+```bash
+kubectl create -f kubernetes-yaml/deployment/helloworld-healthcheck.yml
+```
 
