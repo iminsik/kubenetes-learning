@@ -81,14 +81,14 @@ spec:
         ports:
         - name: nodejs-port
           containerPort: 8080
-	#BEGIN: Checking App Health
+        #BEGIN: Checking App Health
         livenessProbe:
           httpGet:
             path: /
             port: nodejs-port
           initialDelaySeconds: 10
           timeoutSeconds: 20
-	#END:
+        #END:
 ```
 
 ```bash
