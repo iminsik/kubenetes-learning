@@ -67,6 +67,7 @@ You can see more instructions on [Kubernetes Dashboard](https://kubernetes.io/do
 ## TODO 2: deploy the helloworld app with health check
 - The docker image could be deployed to local single-node minikube cluster with 10 replicas set.
 ```yml
+#deployment/helloworld-deployment-healthcheck.yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -102,3 +103,44 @@ kubectl create -f kubernetes-yaml/deployment/helloworld-healthcheck.yml
 I've added 'deployment/helloworld-nodeselector.yml' example, but still can't figure out how I can assign the selector to each node. I will take a look at tutorial again.
 
 ## TODO 4: create secrets and use it in helloworld app.
+Create a secrete for username and password encoded as BASE64.
+```yml
+#deployment/helloworld-secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secrets
+type: Opaque
+data:
+  username: cm9vdA==
+  password: cGFzc3dvcmQ=
+```
+
+Map the secrets to '/etc/creds/' directory in 'helloworld' app. 'username' is mapped to '/etc/creds/username', and 'password' mapped to '/etc/creds/password'.
+```yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: iminsik
+        image: iminsik/node-web-app
+        ports:
+        - name: nodejs-port
+          containerPort: 8080
+        volumeMounts:
+        - name: cred-volume
+          mountPath: /etc/creds
+          readOnly: true
+      volumes:
+      - name: cred-volume
+        secret: 
+          secretName: db-secrets
+```
