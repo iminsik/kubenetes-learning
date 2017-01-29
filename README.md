@@ -98,3 +98,7 @@ spec:
 kubectl create -f kubernetes-yaml/deployment/helloworld-healthcheck.yml
 ```
 
+## TODO 3: deploy the helloworld app to specific node with selector
+I've added 'deployment/helloworld-nodeselector.yml' example, but still can't figure out how I can assign the selector to each node. I will take a look at tutorial again.
+
+## TODO 4: create secrets and use it in helloworld app.
