@@ -146,4 +146,3 @@ spec:
 ```
 
 # TODO: create service for the app
-
