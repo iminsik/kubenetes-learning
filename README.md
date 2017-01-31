@@ -144,3 +144,6 @@ spec:
         secret: 
           secretName: db-secrets
 ```
+
+# TODO: create service for the app
+
