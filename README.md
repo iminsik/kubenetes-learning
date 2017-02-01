@@ -17,6 +17,7 @@ I am learning Markdown syntax [here](https://github.com/adam-p/markdown-here/wik
 # Start Single-node Kubernetes with Minikube
 1. Run 'Docker Quick Start Terminal' to create and initialize 'default' docker virtualbox.
 2. Open 'Powershell' and run 'minikube start'. It creates 'minikube' or 'minikubeVM' instance in VirtualBox.
+3. Please remove '.minikube' folder by 'rm -rf ~/.minikube', if 'minikube start' fails anyway.
 
 # TODO
 ## TODO 1: Build my own node js and deploy it to Kubernetes
