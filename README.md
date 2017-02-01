@@ -271,3 +271,4 @@ spec:
 $curl -s $(minikube service helloworld-db-service --url)
 Hello World! You are visitor number34
 ```
+## TODO 6: running app with AWS volume to keep persistent data
