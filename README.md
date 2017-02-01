@@ -147,7 +147,7 @@ spec:
 ```
 
 # TODO: create service for the app running with MySQL database service
-'helloworld-db-service' is talking to 'database-service' to increase database number.
+'helloworld-db-service' is talking to 'database-service' to persist visitors number in MySQL database.
 
 ```yml
 # service-discovery/secrets.yml
