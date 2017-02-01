@@ -265,9 +265,6 @@ spec:
 ```
 
 ```bash
-$minikube service helloworld-db-service --url
-http://192.168.99.100:32114
-
-$curl http://192.168.99.100:32114
+$curl -s $(minikube service helloworld-db-service --url)
 Hello World! You are visitor number34
 ```
