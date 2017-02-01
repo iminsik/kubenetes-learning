@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"start": "node node.js"
+		"start": "node node-db.js"
 	},
 	"engines": {
 		"node": "^4.6.1"
