@@ -105,7 +105,7 @@ I've added 'deployment/helloworld-nodeselector.yml' example, but still can't fig
 ## TODO 4: create secrets and use it in helloworld app.
 Create a secrete for username and password encoded as BASE64.
 ```yml
-#deployment/helloworld-secrets.yaml
+# deployment/helloworld-secrets.yml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -118,6 +118,7 @@ data:
 
 Map the secrets to '/etc/creds/' directory in 'helloworld' app. 'username' is mapped to '/etc/creds/username', and 'password' mapped to '/etc/creds/password'.
 ```yml
+# deployment/helloworld-secrets-volumes.yml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -146,3 +147,127 @@ spec:
 ```
 
 # TODO: create service for the app
+```yml
+# service-discovery/secrets.yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helloworld-secrets
+type: Opaque
+data:
+  username: aGVsbG93b3JsZA==
+  password: cGFzc3dvcmQ=
+  rootPassword: cm9vdHBhc3N3b3JK
+  database: aGVsbG93b3JsZA==
+```
+```yml
+# service-discovery/database.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: database
+  labels:
+    app: database
+spec:
+  containers:
+  - name: mysql
+    image: mysql:5.7
+    ports:
+    - name: mysql-port
+      containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: helloworld-secrets
+          key: rootPassword
+    - name: MYSQL_USER
+      valueFrom:
+        secretKeyRef:
+          name: helloworld-secrets
+          key: username
+    - name: MYSQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: helloworld-secrets
+          key: password
+    - name: MYSQL_DATABASE
+      valueFrom:
+        secretKeyRef:
+          name: helloworld-secrets
+          key: database
+```
+
+```yml
+# service-discovery/database-service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-service
+spec:
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    app: database
+  type: NodePort
+```
+
+```yml
+# service-discovery/helloworld-db.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deploymemnt
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: helloworld-db
+    spec:
+      containers:
+      - name: iminsik
+        image: iminsik/node-web-db-app
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        env:
+        - name: MYSQL_HOST
+          value: database-service
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: helloworld-secrets
+              key: rootPassword
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: helloworld-secrets
+              key: database
+```
+
+```yml
+# service-discovery/helloworld-db-service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-db-service
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+  selector:
+    app: helloworld-db
+  type: NodePort
+```
+
+```bash
+$minikube service helloworld-db-service --url
+http://192.168.99.100:32114
+
+$curl http://192.168.99.100:32114
+Hello World! You are visitor number34
+```
