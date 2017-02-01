@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 		Date.now(),
 		function(err, dbRes) {
 			if(err) throw err;
-			res.send('Hello World! You are visitor number' + dbRes.insertId);	
+			res.send('Hello World! You are visitor number ' + dbRes.insertId);	
 		});
 });
 
