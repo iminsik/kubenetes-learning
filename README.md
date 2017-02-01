@@ -146,7 +146,9 @@ spec:
           secretName: db-secrets
 ```
 
-# TODO: create service for the app
+# TODO: create service for the app running with MySQL database service
+'helloworld-db-service' is talking to 'database-service' to increase database number.
+
 ```yml
 # service-discovery/secrets.yml
 apiVersion: v1
