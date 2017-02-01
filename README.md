@@ -147,7 +147,7 @@ spec:
           secretName: db-secrets
 ```
 
-## TODO 5: create service for the app running with MySQL database service
+## TODO 5: create service for the app running with [MySQL database](https://hub.docker.com/_/mysql/) service
 'helloworld-db-service' is talking to 'database-service' to persist visitors number in MySQL database.
 
 ```yml
