@@ -274,10 +274,6 @@ Hello World! You are visitor number34
 ## TODO 6: running app with AWS volume to keep persistent data
 
 ## TODO 7: running app with configmap
-```bash
-kubectl create configmap nginx-config --from-file=reverseproxy.conf
-```
-
 ```
 //reverseproxy.conf
 server {
@@ -294,4 +290,40 @@ server {
     root  /usr/share/nginx/html;
   }
 }
+```
+
+```bash
+kubectl create configmap nginx-config --from-file=reverseproxy.conf
+```
+nginx.yml generates a pod with 2 containers, 'nginx' and 'node-web-app'. 'nginx' server functions as reverseproxy with configmap volume.
+
+```yml
+#nginx.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld-nginx
+  labels:
+    app: helloworld-nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.11
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/nginx/conf.d
+  - name: iminsik
+    image: iminsik/node-web-app
+    ports:
+    - containerPort: 8080
+  volumes:
+  - name: config-volume
+    configMap:
+      name: nginx-config
+      items:
+      - key: reverseproxy.conf
+        path: reverseproxy.conf 
 ```
