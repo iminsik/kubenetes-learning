@@ -278,7 +278,7 @@ Hello World! You are visitor number34
 kubectl create configmap nginx-config --from-file=reverseproxy.conf
 ```
 
-```javascript
+```
 //reverseproxy.conf
 server {
   listen  80;
