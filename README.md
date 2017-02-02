@@ -327,3 +327,8 @@ spec:
       - key: reverseproxy.conf
         path: reverseproxy.conf 
 ```
+## TODO 8: deploy and rollback with terminationGracePeriodSeconds
+Some Kubernetes documents may help:
+- [Deployment and Rollback](https://kubernetes.io/docs/user-guide/deployments/)
+- [Graceful Shutdown](https://pracucci.com/graceful-shutdown-of-kubernetes-pods.html)
+
