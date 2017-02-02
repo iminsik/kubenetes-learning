@@ -278,8 +278,8 @@ Hello World! You are visitor number34
 kubectl create configmap nginx-config --from-file=reverseproxy.conf
 ```
 
-```javascript
-#reverseproxy.conf
+```json
+//reverseproxy.conf
 server {
   listen  80;
   server_name localhost;
